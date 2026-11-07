@@ -1,0 +1,384 @@
+/* =========================================
+   ESTILOS GENERALES DE LA APLICACIÓN
+========================================= */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7f5;
+}
+
+/* =========================================
+   ENCABEZADO
+========================================= */
+
+.header {
+  position: relative;
+  background-color: #238636;
+  color: white;
+  text-align: center;
+  padding: 25px 64px; 
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.header p {
+  margin: 10px 0 0;
+}
+
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
+
+.contenido {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px 110px;
+}
+
+.contenido h1 {
+  color: #238636;
+}
+
+.contenido h2 {
+  color: #333333;
+}
+
+/* =========================================
+   PÁGINA DE INICIO
+========================================= */
+
+.bienvenida {
+  margin-bottom: 35px;
+}
+
+.bienvenida h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.bienvenida p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.inventario h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.inventario > p {
+  margin-bottom: 25px;
+}
+
+/* =========================================
+   TARJETAS DE PRODUCTOS
+========================================= */
+
+.producto-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 25px 20px;
+  text-align: center;
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.producto-icono {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.producto-card h3 {
+  margin: 10px 0;
+  color: #238636;
+  font-size: 1.2rem;
+}
+
+.producto-categoria {
+  color: #666666;
+  font-size: 0.95rem;
+}
+
+.producto-precio {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #222222;
+  margin: 15px 0;
+}
+
+.producto-stock {
+  display: inline-block;
+  background-color: #e1f3e5;
+  color: #17652a;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* =========================================
+   MENÚ DE NAVEGACIÓN INFERIOR
+========================================= */
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  background-color: #ffffff;
+  border-top: 2px solid #238636;
+
+  padding: 15px 20px;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom));
+  z-index: 1000;
+}
+
+/* Enlaces del menú */
+
+.nav-link {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 600;
+
+  padding: 10px 15px;
+  border-radius: 8px;
+
+  transition: background-color 0.3s;
+}
+
+/* Efecto al pasar el cursor */
+
+.nav-link:hover {
+  background-color: #e1f3e5;
+}
+
+/* Página activa */
+
+.nav-link.active {
+  background-color: #238636;
+  color: #ffffff;
+}
+
+/* =========================================
+   DISEÑO ADAPTABLE - MÓVIL
+========================================= */
+
+@media (max-width: 600px) {
+  .header {
+    padding: 20px 10px;
+  }
+
+  .header h1 {
+    font-size: 1.7rem;
+  }
+
+  .contenido {
+    padding: 25px 15px 110px;
+  }
+
+  .bienvenida h1 {
+    font-size: 1.7rem;
+  }
+
+  .producto-card {
+    padding: 20px 15px;
+  }
+
+  .navbar {
+    justify-content: space-around;
+    gap: 5px;
+    padding: 12px 5px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .nav-link {
+    flex: 1;
+    font-size: 0.8rem;
+    padding: 10px 5px;
+    text-align: center;
+  }
+}
+/* =========================================
+   SEMANA 02 - MENÚ Y GESTIÓN DE INVENTARIO
+========================================= */
+.inventory-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.inventory-nav-link {
+  display: inline-block;
+  padding: 11px 18px;
+  border: 1px solid #238636;
+  border-radius: 8px;
+  color: #17652a;
+  background: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.inventory-nav-link:hover { background: #e1f3e5; }
+.inventory-nav-link.active { background: #238636; color: white; }
+
+.gestion-pagina h1 { margin-bottom: 12px; }
+.gestion-pagina > p { margin-bottom: 24px; line-height: 1.5; }
+
+.producto-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 560px;
+  padding: 26px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,.06);
+}
+
+.producto-formulario label { font-weight: 600; }
+.producto-formulario input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #b8c6ba;
+  border-radius: 7px;
+  font: inherit;
+}
+.producto-formulario input:focus-visible,
+.inventory-nav-link:focus-visible,
+.boton-guardar:focus-visible { outline: 3px solid #87c996; outline-offset: 2px; }
+
+.formulario-error { color: #a11919; font-weight: 600; }
+.boton-guardar {
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #238636;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.boton-guardar:hover { background: #17652a; }
+
+.tabla-contenedor { overflow-x: auto; border-radius: 12px; border: 1px solid #ddd; background: white; }
+.tabla-inventario { width: 100%; border-collapse: collapse; }
+.tabla-caption { text-align: left; padding: 14px 16px; font-weight: 600; }
+.tabla-inventario th, .tabla-inventario td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #e5e5e5; }
+.tabla-inventario thead { background: #e1f3e5; color: #17652a; }
+.tabla-inventario tbody tr:nth-child(even) { background: #f7faf7; }
+
+@media (max-width: 600px) {
+  .inventory-nav { gap: 8px; }
+  .inventory-nav-link { flex: 1; text-align: center; padding: 10px; font-size: .9rem; }
+  .producto-formulario { padding: 18px; }
+}
+
+/* Los estilos históricos de SuperAhorro se conservan aquí.
+   Tailwind CSS 4 se utiliza para utilidades de distribución y estados
+   que no están definidos en este archivo. */
+
+/* Aviso de producto existente, sin alterar los estilos de las otras páginas */
+.aviso-existente { margin: 8px 0; color: #714c09; line-height: 1.5; }
+.aviso-existente p { margin: 6px 0 0; }
+
+/* PRUEBA DE MODO OSCURO — ETAPA 1: encabezado y navegación.
+   Las páginas interiores se adaptarán en la siguiente etapa. */
+.boton-tema {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.75);
+  border-radius: 8px;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  font: inherit;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+.boton-tema:hover { background: rgba(255,255,255,.23); }
+.boton-tema:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.dark body { background-color: #101b16; color: #e6f2e9; }
+.dark .app { background-color: #101b16; }
+.dark .header { background-color: #14532d; }
+.dark .navbar { background-color: #1c3025; border-color: #365541; }
+.dark .nav-link { color: #e6f2e9; }
+.dark .nav-link:hover { background-color: #294b35; }
+.dark .nav-link.active { background-color: #238636; color: #fff; }
+.dark .inventory-nav-link { background-color: #1c3025; border-color: #5da875; color: #e6f2e9; }
+.dark .inventory-nav-link:hover { background-color: #294b35; }
+.dark .inventory-nav-link.active { background-color: #238636; color: #fff; }
+.dark .contenido h1 { color: #8ee4a2; }
+.dark .contenido h2 { color: #e6f2e9; }
+
+/* MODO OSCURO — paneles gris carbón aprobados (#343a40).
+   Se aplican solo cuando el usuario activa el tema oscuro. */
+.dark .producto-card,
+.dark .producto-formulario,
+.dark .tabla-contenedor,
+.dark .gestion-pagina .bg-white,
+.dark .gestion-pagina .bg-gray-50,
+.dark .gestion-pagina .bg-green-50 {
+  background-color: #343a40;
+  border-color: #53616a;
+  color: #f4f7f5;
+}
+.dark .producto-card h3 { color: #8ee4a2; }
+.dark .producto-categoria { color: #d6e0dc; }
+.dark .producto-precio { color: #ffffff; }
+.dark .producto-stock { background-color: #d9f3df; color: #14532d; }
+.dark .gestion-pagina .text-gray-900,
+.dark .gestion-pagina .text-gray-800,
+.dark .gestion-pagina .text-gray-700,
+.dark .gestion-pagina .text-gray-600 { color: #f0f5f1; }
+.dark .gestion-pagina .text-green-800 { color: #9af0b0; }
+.dark .gestion-pagina .bg-green-800 { background-color: #166534; color: #ffffff; }
+.dark .gestion-pagina .bg-green-50 { background-color: #263f34; }
+.dark .gestion-pagina .border-gray-200,
+.dark .gestion-pagina .border-green-100,
+.dark .gestion-pagina .border-green-200 { border-color: #53616a; }
+.dark .tabla-inventario thead,
+.dark .gestion-pagina thead.bg-green-50 { background-color: #284b39; color: #e9f9ee; }
+.dark .tabla-inventario tbody tr:nth-child(even) { background-color: #39434a; }
+.dark .tabla-inventario th,
+.dark .tabla-inventario td { border-color: #53616a; }
+.dark .producto-formulario input,
+.dark .gestion-pagina input,
+.dark .gestion-pagina select { background-color: #242c31; border-color: #71808a; color: #fff; }
+.dark .gestion-pagina input::placeholder,
+.dark .producto-formulario input::placeholder { color: #c4cdd1; }
+.dark .gestion-pagina button.bg-white { background-color: #45535b; color: #fff; }
+.dark .gestion-pagina button.border-gray-300 { border-color: #829098; }
+.dark .gestion-pagina .text-sm.text-gray-600 { color: #cbd5d1; }
+.dark .gestion-pagina .bg-green-50.text-green-900 { color: #e9f9ee; }
