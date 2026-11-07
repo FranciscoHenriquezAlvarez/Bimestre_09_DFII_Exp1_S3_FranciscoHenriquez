@@ -1,6 +1,8 @@
 # SuperAhorro — Gestión de inventario y carrito de compras
 
-Aplicación web desarrollada con **React y Vite** para administrar productos de un supermercado, consultar sus existencias y preparar un carrito de compras. El proyecto se construyó progresivamente durante las **semanas 01, 02 y 03** de Frontend II.
+Aplicación web desarrollada con **React y Vite** para administrar productos de un supermercado, consultar sus existencias y preparar un carrito de compras.
+
+El proyecto se construyó progresivamente durante las **semanas 01, 02 y 03** de la asignatura Frontend II.
 
 ## Evolución del proyecto
 
@@ -32,7 +34,7 @@ Aplicación web desarrollada con **React y Vite** para administrar productos de 
 
 ### Interfaz y navegación — Semana 03
 
-- Navegación con **React Router 7**, incluida la ruta dinámica `/producto/:id`.
+- Navegación con **React Router 7** mediante `HashRouter` para compatibilidad con GitHub Pages, incluida la ruta dinámica `/producto/:id`.
 - Diseño adaptable a escritorio y móvil con **Tailwind CSS 4** y estilos propios.
 - Tablas con desplazamiento horizontal e indicaciones para pantallas pequeñas.
 - Modo claro y **modo oscuro** con tarjetas gris carbón, botón de cambio de tema y preferencia guardada localmente.
@@ -113,7 +115,11 @@ tests/              # Pruebas automatizadas
 
 ## Persistencia de datos
 
-El inventario se guarda en el almacenamiento local del navegador. El carrito se guarda en el almacenamiento de sesión de la pestaña: se conserva durante la navegación y las recargas de esa sesión, pero no constituye un historial permanente de compras. Las reservas del carrito se calculan sobre el inventario disponible; no se descuentan definitivamente del inventario persistente.
+El inventario se guarda en el almacenamiento local del navegador.
+
+El carrito se guarda en el almacenamiento de sesión de la pestaña: se conserva durante la navegación y las recargas de esa sesión, pero no constituye un historial permanente de compras.
+
+Las reservas del carrito se calculan sobre el inventario disponible; no se descuentan definitivamente del inventario persistente.
 
 La preferencia de modo claro u oscuro se conserva en `localStorage` para futuras visitas desde el mismo navegador.
 
@@ -121,12 +127,61 @@ La preferencia de modo claro u oscuro se conserva en `localStorage` para futuras
 
 ## Repositorio y publicación
 
-**Repositorio de Semana 03:**
+### Repositorio de Semana 03
 
 https://github.com/FranciscoHenriquezAlvarez/Bimestre_09_DFII_Exp1_S3_FranciscoHenriquez
 
-**GitHub Pages:** pendiente de configurar y verificar. Una vez publicada la aplicación, se incorporará aquí el enlace definitivo.
+### Aplicación publicada en GitHub Pages
+
+https://franciscohenriquezalvarez.github.io/Bimestre_09_DFII_Exp1_S3_FranciscoHenriquez/
+
+### Publicación automática
+
+La publicación se realiza automáticamente desde la rama `main` mediante **GitHub Actions**, con el flujo definido en `.github/workflows/deploy.yml`.
+
+El proceso realiza las siguientes operaciones:
+
+1. Descarga el código del repositorio.
+2. Configura Node.js.
+3. Instala las dependencias mediante `npm ci`.
+4. Ejecuta el análisis estático con ESLint.
+5. Ejecuta las pruebas automatizadas.
+6. Compila la aplicación con Vite.
+7. Publica los archivos generados en GitHub Pages.
+
+Para alojar la aplicación en la ruta del repositorio, `vite.config.js` establece:
+
+```javascript
+base: '/Bimestre_09_DFII_Exp1_S3_FranciscoHenriquez/'
+```
+
+La navegación utiliza `HashRouter` para permitir el acceso directo a rutas internas en GitHub Pages sin errores 404.
+
+**Estado de publicación:** el despliegue de GitHub Actions finalizó correctamente y se comprobó el funcionamiento de la aplicación publicada.
 
 ## Alcance de la Semana 03
 
-Esta entrega se concentra en integrar la navegación por categorías y productos, implementar el carrito con modificación de cantidades, mantener sincronizado el stock disponible y reforzar la organización del código. Como trabajo complementario se realizaron pruebas automatizadas, comprobaciones visuales en escritorio y móvil, y la incorporación opcional del modo oscuro.
+Esta entrega se concentra en integrar la navegación por categorías y productos, implementar el carrito con modificación de cantidades, mantener sincronizado el stock disponible y reforzar la organización del código.
+
+Como trabajo complementario se realizaron pruebas automatizadas, comprobaciones visuales en escritorio y móvil, y la incorporación opcional del modo oscuro.
+
+### Principales resultados
+
+- Inventario funcional con registro, actualización y eliminación de productos.
+- Filtros dinámicos por categoría.
+- Visualización individual de productos mediante rutas dinámicas.
+- Carrito de compras con gestión de cantidades.
+- Sincronización entre las reservas del carrito y el stock disponible.
+- Persistencia de datos mediante almacenamiento del navegador.
+- Componentes reutilizables y organización modular.
+- Diseño responsive para diferentes tamaños de pantalla.
+- Modo oscuro con tarjetas gris carbón.
+- Pruebas automatizadas y verificaciones de compilación.
+- Código fuente disponible en GitHub.
+- Aplicación publicada y comprobada en GitHub Pages.
+
+## Estado final del proyecto
+
+**SuperAhorro — Semana 03: desarrollo, pruebas y publicación completados.**
+
+La aplicación se encuentra disponible públicamente mediante GitHub Pages y el código fuente está alojado en el repositorio correspondiente a la Semana 03 de Frontend II.
