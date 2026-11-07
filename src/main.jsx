@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router';
+import { HashRouter } from 'react-router';
 import InventoryProvider from './context/InventoryProvider';
 import App from './App.jsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <InventoryProvider>
         <App />
       </InventoryProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
