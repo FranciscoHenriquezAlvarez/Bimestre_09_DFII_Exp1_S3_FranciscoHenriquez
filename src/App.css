@@ -175,6 +175,12 @@
   background-color: #e1f3e5;
 }
 
+/* Foco visible al navegar con teclado */
+.nav-link:focus-visible {
+  outline: 3px solid #87c996;
+  outline-offset: 3px;
+}
+
 /* Página activa */
 
 .nav-link.active {
@@ -299,16 +305,13 @@
   .producto-formulario { padding: 18px; }
 }
 
-/* Los estilos históricos de SuperAhorro se conservan aquí.
-   Tailwind CSS 4 se utiliza para utilidades de distribución y estados
-   que no están definidos en este archivo. */
+/* Estilos propios de SuperAhorro complementados con utilidades de Tailwind CSS 4. */
 
 /* Aviso de producto existente, sin alterar los estilos de las otras páginas */
 .aviso-existente { margin: 8px 0; color: #714c09; line-height: 1.5; }
 .aviso-existente p { margin: 6px 0 0; }
 
-/* PRUEBA DE MODO OSCURO — ETAPA 1: encabezado y navegación.
-   Las páginas interiores se adaptarán en la siguiente etapa. */
+/* Selector de tema y estilos del modo oscuro de SuperAhorro. */
 .boton-tema {
   position: absolute;
   top: 12px;
@@ -342,7 +345,7 @@
 .dark .contenido h1 { color: #8ee4a2; }
 .dark .contenido h2 { color: #e6f2e9; }
 
-/* MODO OSCURO — paneles gris carbón aprobados (#343a40).
+/* MODO OSCURO — paneles gris carbón aprobados (#343A40).
    Se aplican solo cuando el usuario activa el tema oscuro. */
 .dark .producto-card,
 .dark .producto-formulario,

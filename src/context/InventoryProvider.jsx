@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import { InventoryContext } from './InventoryContext';
-import { mismaReferencia } from '../utils/inventoryUtils';
+import { validarInventarioGuardado, validarCarritoGuardado } from '../utils/storageValidation.js';
 import { inventarioReducer, disponibles } from './inventarioReducer.js';
 
 const productosIniciales = [
@@ -16,32 +16,6 @@ const CLAVE_INVENTARIO = 'superahorro-inventario-semana02';
 const CLAVE_CARRITO_ANTERIOR = 'superahorro-carrito-semana03';
 const CLAVE_CARRITO_SESION = 'superahorro-carrito-sesion-semana03';
 
-function consolidarDuplicados(lista) {
-  const resultado = [];
-  for (const producto of lista) {
-    const indice = resultado.findIndex((actual) => mismaReferencia(actual, producto));
-    if (indice === -1) resultado.push({ ...producto, id: String(producto.id) });
-    else {
-      const total = resultado[indice].stock + producto.stock;
-      if (!Number.isSafeInteger(total)) return null;
-      resultado[indice] = { ...resultado[indice], stock: total };
-    }
-  }
-  return resultado;
-}
-
-function carritoValido(datos, productos) {
-  if (!Array.isArray(datos)) return [];
-  const ids = new Set();
-  return datos.filter((item) => {
-    if (!item || typeof item.id !== 'string' ||
-        !Number.isSafeInteger(item.cantidad) || item.cantidad <= 0 ||
-        ids.has(item.id) || !productos.some((p) => p.id === item.id)) return false;
-    ids.add(item.id);
-    return true;
-  }).map(({ id, cantidad }) => ({ id, cantidad }));
-}
-
 function cargarEstadoInicial() {
   let productos = productosIniciales;
   let carrito = [];
@@ -49,18 +23,14 @@ function cargarEstadoInicial() {
     const guardados = localStorage.getItem(CLAVE_INVENTARIO);
     if (guardados) {
       const datos = JSON.parse(guardados);
-      if (Array.isArray(datos) && datos.every((p) =>
-        p && (typeof p.id === 'string' || typeof p.id === 'number') &&
-        typeof p.nombre === 'string' && typeof p.marca === 'string' &&
-        typeof p.categoria === 'string' && Number.isFinite(p.precio) && p.precio >= 0 &&
-        Number.isSafeInteger(p.stock) && p.stock >= 0
-      )) productos = consolidarDuplicados(datos) ?? productosIniciales;
+      const validados = validarInventarioGuardado(datos);
+      if (validados !== null) productos = validados;
     }
 
     // Migración única: la etapa anterior descontaba reservas del inventario persistente.
     const anterior = localStorage.getItem(CLAVE_CARRITO_ANTERIOR);
     if (anterior !== null) {
-      const reservas = carritoValido(JSON.parse(anterior), productos);
+      const reservas = validarCarritoGuardado(JSON.parse(anterior), productos);
       productos = productos.map((p) => {
         const reservado = reservas.find((item) => item.id === p.id)?.cantidad ?? 0;
         const total = p.stock + reservado;
@@ -71,10 +41,8 @@ function cargarEstadoInicial() {
     }
     const sesion = sessionStorage.getItem(CLAVE_CARRITO_SESION);
     if (sesion) {
-      const reservas = carritoValido(JSON.parse(sesion), productos);
-      carrito = reservas.filter((item) =>
-        item.cantidad <= productos.find((p) => p.id === item.id).stock
-      );
+      const reservas = validarCarritoGuardado(JSON.parse(sesion), productos);
+      carrito = reservas;
     }
   } catch (error) {
     console.warn('No se pudieron recuperar todos los datos guardados:', error);
